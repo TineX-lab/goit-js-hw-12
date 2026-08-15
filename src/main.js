@@ -18,7 +18,7 @@ let query = '';
 let page = 1;
 let maxPage = 0;
 
-// Обробник сабміту форми
+
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
   
@@ -33,7 +33,6 @@ form.addEventListener('submit', async (event) => {
     return;
   }
 
-  // Скидаємо сторінку та інтерфейс при новому пошуку
   page = 1;
   clearGallery();
   hideLoadMoreButton();
@@ -50,7 +49,6 @@ form.addEventListener('submit', async (event) => {
       return;
     }
 
-    // Рахуємо максимальну кількість сторінок (по 15 картинок на сторінку)
     maxPage = Math.ceil(data.totalHits / 15);
     createGallery(data.hits);
 
@@ -75,7 +73,6 @@ form.addEventListener('submit', async (event) => {
   }
 });
 
-// Обробник кліку на кнопку "Load more"
 loadMoreBtn.addEventListener('click', async () => {
   page += 1;
   hideLoadMoreButton();
@@ -85,7 +82,6 @@ loadMoreBtn.addEventListener('click', async () => {
     const data = await getImagesByQuery(query, page);
     createGallery(data.hits);
 
-    // Плавна прокрутка сторінки
     const galleryItem = document.querySelector('.gallery-item');
     if (galleryItem) {
       const itemHeight = galleryItem.getBoundingClientRect().height;
@@ -95,7 +91,6 @@ loadMoreBtn.addEventListener('click', async () => {
       });
     }
 
-    // Перевірка кінця колекції
     if (page >= maxPage) {
       hideLoadMoreButton();
       iziToast.info({

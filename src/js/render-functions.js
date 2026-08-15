@@ -5,7 +5,6 @@ const galleryContainer = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
 const loadMoreBtn = document.querySelector('.load-more');
 
-// Ініціалізація SimpleLightbox
 let lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
@@ -28,7 +27,6 @@ export const createGallery = (images) => {
 
   galleryContainer.insertAdjacentHTML('beforeend', markup);
   
-  // Оновлюємо лайтбокс після додавання нових елементів
   lightbox.refresh();
 };
 
